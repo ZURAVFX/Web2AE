@@ -10,9 +10,21 @@ Created by **Elliot Mckenzie / zura**.
 
 ### 1. Install the Chrome extension
 
-**Chrome Web Store:** the public install link will be added here as soon as Google finishes reviewing the v1.0 listing.
+> **Temporary manual install while the Chrome Web Store listing is under review.**
 
-> The Chrome extension has already been submitted. There is no need to download or sideload a browser-extension ZIP from GitHub.
+[**Download Web2AE v1.0 Chrome Manual Install**](Web2AE_v1.0.0_Chrome_Manual_Install.zip)
+
+1. Download the ZIP above.
+2. Extract it to a permanent folder on your PC. Do not delete that folder while the extension is installed.
+3. In Chrome, open `chrome://extensions`.
+4. Turn on **Developer mode** in the top-right.
+5. Click **Load unpacked**.
+6. Select the extracted Web2AE folder containing `manifest.json`.
+7. Pin Web2AE from Chrome's Extensions menu if you want quick access.
+
+**Chrome Web Store:** the official one-click install link will replace these temporary steps as soon as Google's review is complete.
+
+When the official Chrome Web Store version becomes available, remove the manually installed build from `chrome://extensions` and install the store version instead.
 
 ### 2. Install the After Effects companion
 
