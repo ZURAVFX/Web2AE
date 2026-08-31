@@ -1,0 +1,104 @@
+name: Publish temporary browser downloads
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/publish-manual-downloads.yml
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Firefox temporary package
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf firefox-manual
+          mkdir firefox-manual
+          unzip -q Web2AE_v1.0.0_Chrome_Manual_Install.zip -d firefox-manual
+
+          cat > firefox-manual/manifest.json <<'EOF'
+          {
+            "manifest_version": 3,
+            "name": "Web2AE — Live Web to After Effects",
+            "version": "1.0.0",
+            "description": "Send the current live webpage to After Effects as editable text, shapes and image layers. Local-only.",
+            "permissions": ["activeTab", "scripting"],
+            "host_permissions": ["http://127.0.0.1:17321/*"],
+            "background": {"scripts": ["background.js"]},
+            "action": {
+              "default_title": "Send webpage to After Effects",
+              "default_popup": "popup.html",
+              "default_icon": {
+                "16": "icons/icon-16.png",
+                "32": "icons/icon-32.png",
+                "48": "icons/icon-48.png",
+                "128": "icons/icon-128.png"
+              }
+            },
+            "icons": {
+              "16": "icons/icon-16.png",
+              "32": "icons/icon-32.png",
+              "48": "icons/icon-48.png",
+              "128": "icons/icon-128.png"
+            },
+            "browser_specific_settings": {
+              "gecko": {
+                "id": "web2ae@zura.tools",
+                "strict_min_version": "140.0",
+                "data_collection_permissions": {
+                  "required": ["browsingActivity", "websiteContent"]
+                }
+              }
+            }
+          }
+          EOF
+
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('firefox-manual/setup.html')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('Chrome may request one-time high-fidelity page inspection permission.', 'Firefox uses the standard page collector; no Chrome-specific debugger permission is required.')
+          p.write_text(s, encoding='utf-8')
+          PY
+
+          cat > firefox-manual/README.txt <<'EOF'
+          Web2AE v1.0 — Firefox Manual Install
+
+          TEMPORARY INSTALL UNTIL THE SIGNED FIREFOX ADD-ONS VERSION IS LIVE
+
+          1. Extract this ZIP to a folder on your PC.
+          2. In Firefox open: about:debugging#/runtime/this-firefox
+          3. Click "Load Temporary Add-on…"
+          4. Select manifest.json from the extracted Web2AE folder.
+          5. Install the Web2AE After Effects Companion separately from https://github.com/ZURAVFX/Web2AE
+          6. Restart/open After Effects and choose Window > Extensions > Web2AE.
+          7. Open a normal webpage, click Web2AE, then choose "Send Current Page to AE".
+
+          IMPORTANT: Firefox removes unsigned temporary add-ons after a full browser restart. Repeat steps 2–4 after restarting Firefox until the signed Firefox Add-ons version is available.
+
+          Created by Elliot Mckenzie / zura
+          Copyright © 2026. All rights reserved.
+          EOF
+
+          (cd firefox-manual && zip -qr ../Web2AE_v1.0.0_Firefox_Manual_Install.zip .)
+          unzip -t Web2AE_v1.0.0_Firefox_Manual_Install.zip
+
+      - name: Publish temporary download assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="manual-v1.0"
+          if ! gh release view "$TAG" >/dev/null 2>&1; then
+            gh release create "$TAG" --title "Web2AE v1.0 Manual Browser Installs" --notes "Temporary manual Chrome and Firefox downloads while the signed browser-store versions are pending." --prerelease
+          fi
+          gh release upload "$TAG" Web2AE_v1.0.0_Chrome_Manual_Install.zip Web2AE_v1.0.0_Firefox_Manual_Install.zip --clobber
