@@ -13,17 +13,58 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout full history
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Build Firefox temporary package
+      - name: Build fresh Chrome and Firefox manual packages
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf firefox-manual
-          mkdir firefox-manual
-          unzip -q Web2AE_v1.0.0_Chrome_Manual_Install.zip -d firefox-manual
+          SOURCE_COMMIT="c720975b16b8ec5bad952d7dd48a7b9208fa28f2"
 
+          rm -rf browser-source chrome-manual firefox-manual
+          mkdir browser-source chrome-manual firefox-manual
+          git archive "$SOURCE_COMMIT" browser-extension | tar -x
+          cp -a browser-extension/. browser-source/
+          rm -rf browser-extension
+
+          # Chrome package
+          cp -a browser-source/. chrome-manual/
+          cp chrome-manual/manifest.json chrome-manual/manifest.original.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path('chrome-manual/manifest.json')
+          m = json.loads(p.read_text(encoding='utf-8'))
+          m['description'] = 'Send the current live webpage to After Effects as editable text, shapes and image layers. Local-only.'
+          p.write_text(json.dumps(m, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+          Path('chrome-manual/manifest.original.json').unlink(missing_ok=True)
+          PY
+          cat > chrome-manual/README.txt <<'EOF'
+          Web2AE v1.0 — Chrome Manual Install
+
+          TEMPORARY INSTALL UNTIL THE CHROME WEB STORE VERSION IS LIVE
+
+          1. Extract this ZIP to a permanent folder on your PC.
+          2. Open chrome://extensions
+          3. Turn on Developer mode.
+          4. Click Load unpacked.
+          5. Select the extracted folder containing manifest.json.
+          6. Install the Web2AE After Effects Companion separately from https://github.com/ZURAVFX/Web2AE
+          7. Restart/open After Effects and choose Window > Extensions > Web2AE.
+          8. Open a normal webpage, click Web2AE, then choose Send Current Page to AE.
+
+          IMPORTANT: Do not move/delete the extracted Chrome folder while the manual extension is installed.
+
+          Created by Elliot Mckenzie / zura
+          Copyright © 2026. All rights reserved.
+          EOF
+          (cd chrome-manual && zip -qr ../Web2AE_v1.0.0_Chrome_Manual_Install.zip .)
+
+          # Firefox package
+          cp -a browser-source/. firefox-manual/
           cat > firefox-manual/manifest.json <<'EOF'
           {
             "manifest_version": 3,
@@ -60,7 +101,6 @@ jobs:
             }
           }
           EOF
-
           python - <<'PY'
           from pathlib import Path
           p = Path('firefox-manual/setup.html')
@@ -68,27 +108,27 @@ jobs:
           s = s.replace('Chrome may request one-time high-fidelity page inspection permission.', 'Firefox uses the standard page collector; no Chrome-specific debugger permission is required.')
           p.write_text(s, encoding='utf-8')
           PY
-
           cat > firefox-manual/README.txt <<'EOF'
           Web2AE v1.0 — Firefox Manual Install
 
           TEMPORARY INSTALL UNTIL THE SIGNED FIREFOX ADD-ONS VERSION IS LIVE
 
           1. Extract this ZIP to a folder on your PC.
-          2. In Firefox open: about:debugging#/runtime/this-firefox
-          3. Click "Load Temporary Add-on…"
+          2. Open about:debugging#/runtime/this-firefox
+          3. Click Load Temporary Add-on…
           4. Select manifest.json from the extracted Web2AE folder.
           5. Install the Web2AE After Effects Companion separately from https://github.com/ZURAVFX/Web2AE
           6. Restart/open After Effects and choose Window > Extensions > Web2AE.
-          7. Open a normal webpage, click Web2AE, then choose "Send Current Page to AE".
+          7. Open a normal webpage, click Web2AE, then choose Send Current Page to AE.
 
           IMPORTANT: Firefox removes unsigned temporary add-ons after a full browser restart. Repeat steps 2–4 after restarting Firefox until the signed Firefox Add-ons version is available.
 
           Created by Elliot Mckenzie / zura
           Copyright © 2026. All rights reserved.
           EOF
-
           (cd firefox-manual && zip -qr ../Web2AE_v1.0.0_Firefox_Manual_Install.zip .)
+
+          unzip -t Web2AE_v1.0.0_Chrome_Manual_Install.zip
           unzip -t Web2AE_v1.0.0_Firefox_Manual_Install.zip
 
       - name: Publish temporary download assets
