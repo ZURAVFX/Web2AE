@@ -24,7 +24,8 @@ jobs:
           set -euo pipefail
           SOURCE_COMMIT="c720975b16b8ec5bad952d7dd48a7b9208fa28f2"
 
-          rm -rf browser-source chrome-manual firefox-manual
+          rm -rf browser-source chrome-manual firefox-manual browser-extension
+          rm -f Web2AE_v1.0.0_Chrome_Manual_Install.zip Web2AE_v1.0.0_Firefox_Manual_Install.zip
           mkdir browser-source chrome-manual firefox-manual
           git archive "$SOURCE_COMMIT" browser-extension | tar -x
           cp -a browser-extension/. browser-source/
@@ -32,7 +33,6 @@ jobs:
 
           # Chrome package
           cp -a browser-source/. chrome-manual/
-          cp chrome-manual/manifest.json chrome-manual/manifest.original.json
           python - <<'PY'
           import json
           from pathlib import Path
@@ -40,7 +40,6 @@ jobs:
           m = json.loads(p.read_text(encoding='utf-8'))
           m['description'] = 'Send the current live webpage to After Effects as editable text, shapes and image layers. Local-only.'
           p.write_text(json.dumps(m, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
-          Path('chrome-manual/manifest.original.json').unlink(missing_ok=True)
           PY
           cat > chrome-manual/README.txt <<'EOF'
           Web2AE v1.0 — Chrome Manual Install
