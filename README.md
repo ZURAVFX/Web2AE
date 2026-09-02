@@ -8,50 +8,23 @@ Created by **Elliot Mckenzie / zura**.
 
 # Install Web2AE
 
-Web2AE guides you through the After Effects setup from inside the browser extension. If the AE Companion is missing, the extension gives you a direct download button and the exact next step.
+## 1. Install the browser extension
 
-## Google Chrome
+### Google Chrome — recommended
 
 [**Install Web2AE from the Chrome Web Store**](https://chromewebstore.google.com/detail/web2ae-%E2%80%94-live-web-to-afte/apfelhnjcinfnjmddlfnikepkddpdllk)
 
-The Chrome Web Store listing is now live.
+Install Web2AE normally from the Chrome Web Store, then click the Web2AE icon. The extension will tell you if the After Effects Companion is missing and link directly to it.
 
-**Latest browser build: v1.0.2.** If Google is still processing the v1.0.2 store update and you specifically need the latest hotfix immediately, use the manual fallback below:
+### Mozilla Firefox
 
-[Download Web2AE v1.0.2 for Chrome — Manual Hotfix](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.2_Chrome_Manual_Install.zip)
-
-Manual fallback steps:
-1. Download and extract the ZIP to a permanent folder.
-2. Open `chrome://extensions`.
-3. Turn on **Developer mode**.
-4. Click **Load unpacked** and select the extracted Web2AE folder.
-5. Click Web2AE in Chrome. The extension will guide you through the rest of setup automatically.
-
-When the v1.0.2 Chrome Store update is live, remove the manual build and use the store version instead.
+The signed Firefox Add-ons version is not live yet. Use the temporary Firefox build in the **Temporary / test builds** section below for now.
 
 ---
 
-## Mozilla Firefox
+## 2. Install the After Effects Companion
 
-> **Temporary manual install while the signed Firefox Add-ons version is not yet live.**
-
-[**Download Web2AE v1.0.2 for Firefox — Temporary Add-on**](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.2_Firefox_Manual_Install.zip)
-
-1. Download and extract the Firefox ZIP.
-2. Open `about:debugging#/runtime/this-firefox`.
-3. Click **Load Temporary Add-on…**.
-4. Select `manifest.json` from the extracted Web2AE folder.
-5. Click Web2AE in Firefox. The extension will guide you through installing the AE Companion.
-
-**Firefox limitation:** normal Firefox removes unsigned temporary add-ons after a full browser restart. Until the signed Firefox Add-ons version is published, repeat steps 2–4 after restarting Firefox.
-
----
-
-# After Effects Companion — required for both browsers
-
-You usually do not need to find this manually anymore: Web2AE links directly to it whenever the companion is missing.
-
-[**Download Web2AE Companion v1.0 for Windows**](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.0_Companion_Windows.zip)
+[**Download Web2AE Companion for Windows**](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.0_Companion_Windows.zip)
 
 1. Download and extract the ZIP.
 2. Close After Effects.
@@ -60,16 +33,18 @@ You usually do not need to find this manually anymore: Web2AE links directly to 
 5. Open **Window → Extensions → Web2AE**.
 6. Leave the Web2AE panel open while capturing pages.
 
-Once the local companion is detected, the browser extension automatically enables **Send Current Page to AE**.
+The browser extension checks for the local companion automatically. Once it is detected, **Send Current Page to AE** becomes available.
 
-# Send a webpage to After Effects
+---
 
-1. Open Web2AE in After Effects.
-2. Open the webpage you want in Chrome or Firefox.
+# Use Web2AE
+
+1. Open the Web2AE panel in After Effects.
+2. Open the webpage you want in your browser.
 3. Click the Web2AE browser extension.
 4. Click **Send Current Page to AE**.
 
-Web2AE sends the capture to the local After Effects companion and builds an After Effects composition.
+Web2AE sends the capture to the local companion and builds an After Effects composition.
 
 ## What Web2AE creates
 
@@ -80,15 +55,50 @@ Web2AE sends the capture to the local After Effects companion and builds an Afte
 - Sensible precomps when grouping does not break page stacking.
 - Pixel-accurate element layers for complex browser visuals that After Effects cannot reproduce natively.
 
+---
+
+# Temporary / test builds
+
+These are only for testing fixes before the browser-store versions catch up.
+
+### Chrome v1.0.2 manual hotfix
+
+[Download Chrome v1.0.2 manual hotfix](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.2_Chrome_Manual_Install.zip)
+
+Use this only if the Chrome Web Store is still serving an older build and you specifically need the latest YouTube/modern-site capture fix.
+
+Manual install:
+1. Open `chrome://extensions`.
+2. Turn on **Developer mode**.
+3. Click **Load unpacked**.
+4. Select the extracted Web2AE folder.
+
+When the store update is live, remove the manual build and go back to the Chrome Web Store version.
+
+### Firefox v1.0.2 temporary add-on
+
+[Download Firefox v1.0.2 temporary add-on](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.2_Firefox_Manual_Install.zip)
+
+1. Extract the ZIP.
+2. Open `about:debugging#/runtime/this-firefox`.
+3. Click **Load Temporary Add-on…**.
+4. Select `manifest.json`.
+
+**Firefox limitation:** normal Firefox removes unsigned temporary add-ons after a full browser restart. Reload `manifest.json` after restarting Firefox until the signed Firefox Add-ons version is available.
+
+---
+
 ## v1.0.2 capture fix
 
-v1.0.2 hardens capture on modern app-style websites such as YouTube. It prevents zero-size/non-painting layout wrappers from incorrectly clipping valid child elements and allows rendered text ranges to survive custom-element wrappers that do not expose a useful element box.
+v1.0.2 fixes a modern-app capture bug seen on YouTube where Web2AE could detect hundreds of images, SVGs and text nodes but then discard them during clipping.
+
+The fix is included in **both Chrome and Firefox v1.0.2**. Zero-size/non-painting layout wrappers can no longer collapse otherwise valid child elements to 0×0, and rendered text ranges can survive custom wrappers that do not expose a useful element box.
 
 ## Requirements
 
 - Windows 10/11
 - Adobe After Effects 2024 or newer
-- Google Chrome **or** Mozilla Firefox
+- Google Chrome or Mozilla Firefox
 
 ## Privacy
 
@@ -106,7 +116,7 @@ Read the [Privacy Policy](docs/PRIVACY.md).
 
 ## Version
 
-Current browser release: **Web2AE v1.0.2**  
+Current browser hotfix: **Web2AE v1.0.2**  
 Current Windows companion: **Web2AE v1.0.0**
 
 Copyright © 2026 Elliot Mckenzie / zura. All rights reserved.
