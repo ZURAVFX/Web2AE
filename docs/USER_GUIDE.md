@@ -12,7 +12,7 @@ After installing, click Web2AE in Chrome. If the After Effects Companion is miss
 
 ## After Effects Companion
 
-[**Download Web2AE Companion for Windows**](https://github.com/ZURAVFX/Web2AE/releases/download/v1.0.2/Web2AE_v1.0.0_Companion_Windows.zip)
+[**Download the AE Companion for Windows**](https://github.com/ZURAVFX/Web2AE/releases/download/v1.0.2/Web2AE-v1.0.2-AE-Companion-Windows.zip)
 
 1. Download and extract the ZIP.
 2. Close After Effects.
@@ -37,7 +37,7 @@ Once the browser detects the companion, **Send Current Page to AE** becomes avai
 
 The signed Firefox Add-ons version is not live yet.
 
-[**Download Firefox v1.0.2 temporary add-on**](https://github.com/ZURAVFX/Web2AE/releases/download/v1.0.2/Web2AE_v1.0.2_Firefox_Manual_Install.zip)
+[**Download Firefox Temporary Add-on**](https://github.com/ZURAVFX/Web2AE/releases/download/v1.0.2/Web2AE-v1.0.2-Firefox-Temporary-Addon.zip)
 
 1. Extract the ZIP.
 2. Open `about:debugging#/runtime/this-firefox`.
@@ -52,9 +52,9 @@ The signed Firefox Add-ons version is not live yet.
 
 Most users should install Chrome from the Web Store.
 
-If the store is still serving an older build and you specifically need the current v1.0.2 capture hotfix:
+If the store is still serving an older build and you specifically need the current hotfix:
 
-[Download Chrome v1.0.2 manual fallback](https://github.com/ZURAVFX/Web2AE/releases/download/v1.0.2/Web2AE_v1.0.2_Chrome_Manual_Install.zip)
+[Download Chrome Manual Hotfix](https://github.com/ZURAVFX/Web2AE/releases/download/v1.0.2/Web2AE-v1.0.2-Chrome-Manual-Hotfix.zip)
 
 1. Extract it to a permanent folder.
 2. Open `chrome://extensions`.
@@ -71,6 +71,18 @@ When the same version reaches the Chrome Web Store, remove the manual build and 
 v1.0.2 fixes an issue where Web2AE could detect hundreds of rendered images, SVGs and text nodes but then discard them during clipping on app-style sites such as YouTube.
 
 The fix is shared by both Chrome and Firefox v1.0.2. It prevents zero-size/non-painting wrappers from collapsing valid children to 0×0 and improves rendered text-range capture when a custom wrapper does not expose a useful element box.
+
+# Versioning
+
+**Current Web2AE release: v1.0.2**
+
+Web2AE uses one synchronized product version across the browser extension and After Effects Companion. Future releases always move both components to the same version number.
+
+The download names are intentionally different so it is obvious which file is which:
+
+- `Web2AE-v1.0.2-AE-Companion-Windows.zip`
+- `Web2AE-v1.0.2-Firefox-Temporary-Addon.zip`
+- `Web2AE-v1.0.2-Chrome-Manual-Hotfix.zip`
 
 ## Layer behaviour
 
