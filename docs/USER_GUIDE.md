@@ -2,23 +2,26 @@
 
 # Browser installation
 
-Web2AE v1.0.1 now guides first-time users through the After Effects setup directly from the browser extension. If the local AE Companion is missing, Web2AE shows a direct **Download AE Companion** button, a short three-step setup, and a link back to the Web2AE support page.
+Web2AE v1.0.2 guides first-time users through the After Effects setup directly from the browser extension. If the local AE Companion is missing, Web2AE shows a direct **Download AE Companion** button, a short three-step setup, and a link back to the Web2AE support page.
 
-## Google Chrome — temporary manual install
+## Google Chrome
 
-While the Chrome Web Store listing is under review:
+[**Install Web2AE from the Chrome Web Store**](https://chromewebstore.google.com/detail/web2ae-%E2%80%94-live-web-to-afte/apfelhnjcinfnjmddlfnikepkddpdllk)
 
-1. Download [Web2AE v1.0.1 for Chrome — Manual Install](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.1_Chrome_Manual_Install.zip).
-2. Extract it to a permanent folder on your PC.
-3. Open `chrome://extensions`.
-4. Enable **Developer mode**.
-5. Click **Load unpacked**.
-6. Select the extracted Web2AE folder.
-7. Click Web2AE. The extension will tell you exactly what is missing and link directly to the AE Companion.
+The Chrome Web Store listing is live. Install from the store normally, then click Web2AE in Chrome. The extension will tell you if the After Effects Companion is missing and link directly to it.
 
-Do not delete or move the extracted Chrome folder while the manually installed extension is in use.
+If Google is still processing the v1.0.2 store update and you need the latest capture hotfix immediately, use the manual fallback:
 
-When the official Chrome Web Store version is live, remove the manual build and install Web2AE from the store instead.
+[Download Web2AE v1.0.2 for Chrome — Manual Hotfix](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.2_Chrome_Manual_Install.zip)
+
+Manual fallback:
+1. Extract it to a permanent folder.
+2. Open `chrome://extensions`.
+3. Enable **Developer mode**.
+4. Click **Load unpacked** and select the extracted Web2AE folder.
+5. Click Web2AE and follow the built-in setup.
+
+When v1.0.2 is live in the Chrome Web Store, remove the manual build and use the store version.
 
 ---
 
@@ -26,7 +29,7 @@ When the official Chrome Web Store version is live, remove the manual build and 
 
 Until the signed Firefox Add-ons version is available:
 
-1. Download [Web2AE v1.0.1 for Firefox — Temporary Add-on](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.1_Firefox_Manual_Install.zip).
+1. Download [Web2AE v1.0.2 for Firefox — Temporary Add-on](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.2_Firefox_Manual_Install.zip).
 2. Extract it to a folder on your PC.
 3. Open Firefox and go to `about:debugging#/runtime/this-firefox`.
 4. Click **Load Temporary Add-on…**.
@@ -58,6 +61,10 @@ As soon as the browser extension detects the local bridge, the setup panel disap
 4. Click the Web2AE browser extension.
 5. Click **Send Current Page to AE**.
 6. Web2AE sends the capture to the local After Effects companion and builds the composition.
+
+## v1.0.2 modern-site capture fix
+
+v1.0.2 fixes an issue seen on YouTube and other app-style sites where Web2AE could detect hundreds of images, SVGs and text nodes but then discard them during clipping. Zero-size/non-painting layout wrappers are no longer allowed to collapse a valid child element to 0×0, and text ranges can be captured even when their custom-element wrapper does not expose a useful rendered box.
 
 ## Layer behaviour
 
