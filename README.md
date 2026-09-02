@@ -8,23 +8,26 @@ Created by **Elliot Mckenzie / zura**.
 
 # Install Web2AE
 
-Web2AE now guides you through the After Effects setup from inside the browser extension. If the AE Companion is missing, the extension gives you a direct download button and the exact next step.
+Web2AE guides you through the After Effects setup from inside the browser extension. If the AE Companion is missing, the extension gives you a direct download button and the exact next step.
 
 ## Google Chrome
 
-> **Temporary manual install while the Chrome Web Store listing is under review.**
+[**Install Web2AE from the Chrome Web Store**](https://chromewebstore.google.com/detail/web2ae-%E2%80%94-live-web-to-afte/apfelhnjcinfnjmddlfnikepkddpdllk)
 
-[**Download Web2AE v1.0.1 for Chrome — Manual Install**](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.1_Chrome_Manual_Install.zip)
+The Chrome Web Store listing is now live.
 
-1. Download and extract the Chrome ZIP to a permanent folder.
+**Latest browser build: v1.0.2.** If Google is still processing the v1.0.2 store update and you specifically need the latest hotfix immediately, use the manual fallback below:
+
+[Download Web2AE v1.0.2 for Chrome — Manual Hotfix](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.2_Chrome_Manual_Install.zip)
+
+Manual fallback steps:
+1. Download and extract the ZIP to a permanent folder.
 2. Open `chrome://extensions`.
 3. Turn on **Developer mode**.
 4. Click **Load unpacked** and select the extracted Web2AE folder.
 5. Click Web2AE in Chrome. The extension will guide you through the rest of setup automatically.
 
-**Important:** do not delete or move the extracted folder while the manual Chrome version is installed.
-
-When the official Chrome Web Store version becomes available, remove the manual build and install the store version instead.
+When the v1.0.2 Chrome Store update is live, remove the manual build and use the store version instead.
 
 ---
 
@@ -32,7 +35,7 @@ When the official Chrome Web Store version becomes available, remove the manual 
 
 > **Temporary manual install while the signed Firefox Add-ons version is not yet live.**
 
-[**Download Web2AE v1.0.1 for Firefox — Temporary Add-on**](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.1_Firefox_Manual_Install.zip)
+[**Download Web2AE v1.0.2 for Firefox — Temporary Add-on**](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.2_Firefox_Manual_Install.zip)
 
 1. Download and extract the Firefox ZIP.
 2. Open `about:debugging#/runtime/this-firefox`.
@@ -77,6 +80,10 @@ Web2AE sends the capture to the local After Effects companion and builds an Afte
 - Sensible precomps when grouping does not break page stacking.
 - Pixel-accurate element layers for complex browser visuals that After Effects cannot reproduce natively.
 
+## v1.0.2 capture fix
+
+v1.0.2 hardens capture on modern app-style websites such as YouTube. It prevents zero-size/non-painting layout wrappers from incorrectly clipping valid child elements and allows rendered text ranges to survive custom-element wrappers that do not expose a useful element box.
+
 ## Requirements
 
 - Windows 10/11
@@ -99,7 +106,7 @@ Read the [Privacy Policy](docs/PRIVACY.md).
 
 ## Version
 
-Current browser release: **Web2AE v1.0.1**  
+Current browser release: **Web2AE v1.0.2**  
 Current Windows companion: **Web2AE v1.0.0**
 
 Copyright © 2026 Elliot Mckenzie / zura. All rights reserved.
