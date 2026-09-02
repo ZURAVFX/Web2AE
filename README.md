@@ -20,7 +20,7 @@ After installing, click Web2AE in Chrome. If the After Effects Companion is miss
 
 ## 2. Install the After Effects Companion
 
-[**Download Web2AE Companion for Windows**](https://github.com/ZURAVFX/Web2AE/releases/download/v1.0.2/Web2AE_v1.0.0_Companion_Windows.zip)
+[**Download the AE Companion for Windows**](https://github.com/ZURAVFX/Web2AE/releases/download/v1.0.2/Web2AE-v1.0.2-AE-Companion-Windows.zip)
 
 1. Download and extract the ZIP.
 2. Close After Effects.
@@ -59,7 +59,7 @@ The signed Firefox Add-ons version is not live yet.
 
 For now, use the temporary Firefox build from the current release:
 
-[**Download Firefox v1.0.2 temporary add-on**](https://github.com/ZURAVFX/Web2AE/releases/download/v1.0.2/Web2AE_v1.0.2_Firefox_Manual_Install.zip)
+[**Download Firefox Temporary Add-on**](https://github.com/ZURAVFX/Web2AE/releases/download/v1.0.2/Web2AE-v1.0.2-Firefox-Temporary-Addon.zip)
 
 1. Extract the ZIP.
 2. Open `about:debugging#/runtime/this-firefox`.
@@ -74,9 +74,9 @@ For now, use the temporary Firefox build from the current release:
 
 Most Chrome users should **not** use this. Install from the Chrome Web Store above.
 
-If the store is still serving an older build and you specifically need the latest v1.0.2 capture hotfix:
+If the store is still serving an older build and you specifically need the latest hotfix:
 
-[Download Chrome v1.0.2 manual fallback](https://github.com/ZURAVFX/Web2AE/releases/download/v1.0.2/Web2AE_v1.0.2_Chrome_Manual_Install.zip)
+[Download Chrome Manual Hotfix](https://github.com/ZURAVFX/Web2AE/releases/download/v1.0.2/Web2AE-v1.0.2-Chrome-Manual-Hotfix.zip)
 
 Manual install:
 1. Extract the ZIP to a permanent folder.
@@ -94,6 +94,18 @@ When the same version is available from the store, remove the manual build and r
 v1.0.2 improves capture on modern app-style sites such as YouTube. It prevents zero-size/non-painting layout wrappers from incorrectly clipping valid child elements and improves rendered text-node capture.
 
 The fix is included in both Chrome and Firefox v1.0.2.
+
+## Versioning
+
+**Current Web2AE release: v1.0.2**
+
+Web2AE uses **one product version number** across the browser extension and After Effects Companion. Future releases will always update both to the same version number, even when the actual code change is mainly on one side.
+
+Release asset names are deliberately different by component:
+
+- `Web2AE-v1.0.2-AE-Companion-Windows.zip`
+- `Web2AE-v1.0.2-Firefox-Temporary-Addon.zip`
+- `Web2AE-v1.0.2-Chrome-Manual-Hotfix.zip`
 
 ## Requirements
 
@@ -115,10 +127,5 @@ Read the [Privacy Policy](docs/PRIVACY.md).
 - [Troubleshooting](docs/TROUBLESHOOTING.md)
 - [Report a problem](https://github.com/ZURAVFX/Web2AE/issues)
 - [All releases](https://github.com/ZURAVFX/Web2AE/releases)
-
-## Version
-
-Current browser release: **Web2AE v1.0.2**  
-Current Windows companion: **Web2AE v1.0.0**
 
 Copyright © 2026 Elliot Mckenzie / zura. All rights reserved.
