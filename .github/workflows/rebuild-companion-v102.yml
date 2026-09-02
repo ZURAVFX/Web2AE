@@ -1,0 +1,57 @@
+name: Rebuild Web2AE AE Companion v1.0.2
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/rebuild-companion-v102.yml
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Rebuild companion with synchronized internal version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="v1.0.2"
+          ASSET="Web2AE-v1.0.2-AE-Companion-Windows.zip"
+
+          rm -rf companion
+          mkdir companion
+          gh release download "$TAG" -p "$ASSET"
+          unzip -q "$ASSET" -d companion
+
+          python - <<'PY'
+          from pathlib import Path
+          roots = [Path('companion')]
+          text_exts = {'.txt','.md','.bat','.xml','.json','.html','.js','.jsx','.css'}
+          for root in roots:
+              for p in root.rglob('*'):
+                  if p.is_file() and p.suffix.lower() in text_exts:
+                      try:
+                          s = p.read_text(encoding='utf-8')
+                      except UnicodeDecodeError:
+                          continue
+                      ns = s.replace('v1.0.0','v1.0.2').replace('1.0.0','1.0.2')
+                      if ns != s:
+                          p.write_text(ns, encoding='utf-8')
+          PY
+
+          if grep -RIl --exclude='*.png' --exclude='*.jpg' --exclude='*.zip' '1\.0\.0\|v1\.0\.0' companion; then
+            echo 'Old version string still present after patch.'
+            exit 1
+          fi
+
+          rm -f "$ASSET"
+          (cd companion && zip -qr "../$ASSET" .)
+          unzip -t "$ASSET"
+          gh release upload "$TAG" "$ASSET" --clobber
