@@ -6,7 +6,7 @@
 
 While the Chrome Web Store listing is under review:
 
-1. Download `Web2AE_v1.0.0_Chrome_Manual_Install.zip` from the Web2AE GitHub page/release.
+1. Download [Web2AE v1.0 for Chrome — Manual Install](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.0_Chrome_Manual_Install.zip).
 2. Extract it to a permanent folder on your PC.
 3. Open `chrome://extensions` in Chrome.
 4. Enable **Developer mode**.
@@ -24,7 +24,7 @@ When the official Chrome Web Store version is live, remove the manual build from
 
 Until the signed Firefox Add-ons version is available:
 
-1. Download `Web2AE_v1.0.0_Firefox_Manual_Install.zip` from the Web2AE GitHub page/release.
+1. Download [Web2AE v1.0 for Firefox — Temporary Add-on](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.0_Firefox_Manual_Install.zip).
 2. Extract it to a folder on your PC.
 3. Open Firefox and go to `about:debugging#/runtime/this-firefox`.
 4. Click **Load Temporary Add-on…**.
@@ -39,8 +39,8 @@ When the official Firefox Add-ons version is live, remove the temporary add-on a
 
 # After Effects companion — required for Chrome and Firefox
 
-1. Download `Web2AE_v1.0.0_Companion_Windows.zip` from the Web2AE GitHub page.
-2. Extract it.
+1. Download [Web2AE Companion v1.0 for Windows](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.0_Companion_Windows.zip).
+2. Extract it completely.
 3. Close After Effects.
 4. Run `Install Web2AE.bat`.
 5. Restart After Effects.
