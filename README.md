@@ -49,7 +49,7 @@ Once the official Firefox Add-ons version is live, remove the temporary build an
 
 # After Effects Companion — required for both browsers
 
-[**Download Web2AE Companion v1.0 for Windows**](Web2AE_v1.0.0_Companion_Windows.zip)
+[**Download Web2AE Companion v1.0 for Windows**](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.0_Companion_Windows.zip)
 
 1. Download and extract the ZIP.
 2. Close After Effects.
