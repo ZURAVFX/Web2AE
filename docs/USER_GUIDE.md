@@ -2,21 +2,23 @@
 
 # Browser installation
 
+Web2AE v1.0.1 now guides first-time users through the After Effects setup directly from the browser extension. If the local AE Companion is missing, Web2AE shows a direct **Download AE Companion** button, a short three-step setup, and a link back to the Web2AE support page.
+
 ## Google Chrome — temporary manual install
 
 While the Chrome Web Store listing is under review:
 
-1. Download [Web2AE v1.0 for Chrome — Manual Install](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.0_Chrome_Manual_Install.zip).
+1. Download [Web2AE v1.0.1 for Chrome — Manual Install](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.1_Chrome_Manual_Install.zip).
 2. Extract it to a permanent folder on your PC.
-3. Open `chrome://extensions` in Chrome.
+3. Open `chrome://extensions`.
 4. Enable **Developer mode**.
 5. Click **Load unpacked**.
-6. Select the extracted Web2AE folder containing `manifest.json`.
-7. Optionally pin Web2AE from Chrome's Extensions menu.
+6. Select the extracted Web2AE folder.
+7. Click Web2AE. The extension will tell you exactly what is missing and link directly to the AE Companion.
 
 Do not delete or move the extracted Chrome folder while the manually installed extension is in use.
 
-When the official Chrome Web Store version is live, remove the manual build from `chrome://extensions` and install Web2AE from the store instead.
+When the official Chrome Web Store version is live, remove the manual build and install Web2AE from the store instead.
 
 ---
 
@@ -24,20 +26,20 @@ When the official Chrome Web Store version is live, remove the manual build from
 
 Until the signed Firefox Add-ons version is available:
 
-1. Download [Web2AE v1.0 for Firefox — Temporary Add-on](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.0_Firefox_Manual_Install.zip).
+1. Download [Web2AE v1.0.1 for Firefox — Temporary Add-on](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.1_Firefox_Manual_Install.zip).
 2. Extract it to a folder on your PC.
 3. Open Firefox and go to `about:debugging#/runtime/this-firefox`.
 4. Click **Load Temporary Add-on…**.
 5. Select `manifest.json` from the extracted Web2AE folder.
-6. Web2AE will appear in Firefox's Extensions menu.
+6. Click Web2AE. The extension will guide you through the AE Companion setup.
 
 **Important:** Firefox's normal release build removes unsigned temporary add-ons after a full browser restart. Repeat steps 3–5 after restarting Firefox until the signed Firefox Add-ons version is available.
-
-When the official Firefox Add-ons version is live, remove the temporary add-on and install the signed store version instead.
 
 ---
 
 # After Effects companion — required for Chrome and Firefox
+
+The browser extension links directly to this whenever it is not detected.
 
 1. Download [Web2AE Companion v1.0 for Windows](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.0_Companion_Windows.zip).
 2. Extract it completely.
@@ -45,6 +47,8 @@ When the official Firefox Add-ons version is live, remove the temporary add-on a
 4. Run `Install Web2AE.bat`.
 5. Restart After Effects.
 6. Open **Window → Extensions → Web2AE**.
+
+As soon as the browser extension detects the local bridge, the setup panel disappears and **Send Current Page to AE** becomes available automatically.
 
 # Send a page to After Effects
 
