@@ -12,7 +12,7 @@ After installing, click Web2AE in Chrome. If the After Effects Companion is miss
 
 ## After Effects Companion
 
-[**Download Web2AE Companion for Windows**](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.0_Companion_Windows.zip)
+[**Download Web2AE Companion for Windows**](https://github.com/ZURAVFX/Web2AE/releases/download/v1.0.2/Web2AE_v1.0.0_Companion_Windows.zip)
 
 1. Download and extract the ZIP.
 2. Close After Effects.
@@ -33,27 +33,11 @@ Once the browser detects the companion, **Send Current Page to AE** becomes avai
 
 ---
 
-# Temporary / test builds
-
-Use these only while testing fixes that have not yet reached the browser stores.
-
-## Chrome v1.0.2 manual hotfix
-
-[Download Chrome v1.0.2 manual hotfix](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.2_Chrome_Manual_Install.zip)
-
-1. Extract it to a permanent folder.
-2. Open `chrome://extensions`.
-3. Enable **Developer mode**.
-4. Click **Load unpacked**.
-5. Select the extracted Web2AE folder.
-
-When the same version reaches the Chrome Web Store, remove the manual build and return to the store version.
-
-## Firefox v1.0.2 temporary add-on
+# Firefox
 
 The signed Firefox Add-ons version is not live yet.
 
-[Download Firefox v1.0.2 temporary add-on](https://github.com/ZURAVFX/Web2AE/releases/download/manual-v1.0/Web2AE_v1.0.2_Firefox_Manual_Install.zip)
+[**Download Firefox v1.0.2 temporary add-on**](https://github.com/ZURAVFX/Web2AE/releases/download/v1.0.2/Web2AE_v1.0.2_Firefox_Manual_Install.zip)
 
 1. Extract the ZIP.
 2. Open `about:debugging#/runtime/this-firefox`.
@@ -64,11 +48,29 @@ The signed Firefox Add-ons version is not live yet.
 
 ---
 
+# Chrome manual fallback
+
+Most users should install Chrome from the Web Store.
+
+If the store is still serving an older build and you specifically need the current v1.0.2 capture hotfix:
+
+[Download Chrome v1.0.2 manual fallback](https://github.com/ZURAVFX/Web2AE/releases/download/v1.0.2/Web2AE_v1.0.2_Chrome_Manual_Install.zip)
+
+1. Extract it to a permanent folder.
+2. Open `chrome://extensions`.
+3. Enable **Developer mode**.
+4. Click **Load unpacked**.
+5. Select the extracted Web2AE folder.
+
+When the same version reaches the Chrome Web Store, remove the manual build and return to the store version.
+
+---
+
 # v1.0.2 YouTube / modern-site fix
 
 v1.0.2 fixes an issue where Web2AE could detect hundreds of rendered images, SVGs and text nodes but then discard them during clipping on app-style sites such as YouTube.
 
-The fix is shared by **both Chrome and Firefox v1.0.2**. It prevents zero-size/non-painting wrappers from collapsing valid children to 0×0 and allows rendered text ranges to be captured even when a custom wrapper does not expose a useful element box.
+The fix is shared by both Chrome and Firefox v1.0.2. It prevents zero-size/non-painting wrappers from collapsing valid children to 0×0 and improves rendered text-range capture when a custom wrapper does not expose a useful element box.
 
 ## Layer behaviour
 
